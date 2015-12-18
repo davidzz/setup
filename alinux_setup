@@ -5,7 +5,7 @@ echo "Updating instance"
 sudo yum -y update
 
 echo "installing mosquitto"
-wget -O /etc/yum.repos.d/mqtt.repo http://download.opensuse.org/repositories/home:/oojah:/mqtt/RedHat_RHEL-7/home:oojah:mqtt.repo
+sudo wget -O /etc/yum.repos.d/mqtt.repo http://download.opensuse.org/repositories/home:/oojah:/mqtt/RedHat_RHEL-7/home:oojah:mqtt.repo
 sudo yum -y install mosquitto mosquitto-clients
 
 echo "installing rabbit mq"
