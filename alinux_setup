@@ -12,4 +12,8 @@ echo "installing rabbit mq"
 wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.7/rabbitmq-server-3.5.7-1.noarch.rpm
 sudo yum -y install rabbitmq-server-3.5.7-1.noarch.rpm 
 rm rabbitmq-server-3.5.7-1.noarch.rpm
-.
+
+wget https://www.rabbitmq.com/releases/rabbitmq-java-client/v3.5.7/rabbitmq-java-client-bin-3.5.7.tar.gz
+tar -xvf rabbitmq-java-client-bin-3.5.7.tar.gz
+
+sudo /sbin/service rabbitmq-server start
