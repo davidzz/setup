@@ -3,6 +3,7 @@ echo "Updating instance"
 
 # run sudo update
 sudo yum -y update
+sudo pip install --upgrade pip
 
 echo "installing mosquitto"
 sudo wget -O /etc/yum.repos.d/mqtt.repo http://download.opensuse.org/repositories/home:/oojah:/mqtt/RedHat_RHEL-7/home:oojah:mqtt.repo
@@ -19,6 +20,8 @@ git clone http://git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.java.git
 cd org.eclipse.paho.mqtt.java.git
 mvn package -DskipTests
 
+echo "set up mosquitto python client"
+sudo pip install paho-mqtt
 
 echo "installing rabbit mq"
 wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.7/rabbitmq-server-3.5.7-1.noarch.rpm
@@ -27,5 +30,9 @@ rm rabbitmq-server-3.5.7-1.noarch.rpm
 
 wget https://www.rabbitmq.com/releases/rabbitmq-java-client/v3.5.7/rabbitmq-java-client-bin-3.5.7.tar.gz
 tar -xvf rabbitmq-java-client-bin-3.5.7.tar.gz
+
+echo "installing rabbit python client"
+sudo pip install pika
+
 
 sudo /sbin/service rabbitmq-server start
