@@ -8,6 +8,18 @@ echo "installing mosquitto"
 sudo wget -O /etc/yum.repos.d/mqtt.repo http://download.opensuse.org/repositories/home:/oojah:/mqtt/RedHat_RHEL-7/home:oojah:mqtt.repo
 sudo yum -y install mosquitto mosquitto-clients
 
+echo "set up maven"
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+
+
+echo "set up mosquitto java client"
+git clone http://git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.java.git
+cd org.eclipse.paho.mqtt.java.git
+mvn package -DskipTests
+
+
 echo "installing rabbit mq"
 wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.7/rabbitmq-server-3.5.7-1.noarch.rpm
 sudo yum -y install rabbitmq-server-3.5.7-1.noarch.rpm 
