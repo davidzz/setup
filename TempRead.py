@@ -29,7 +29,7 @@ while True:
 
     channel.basic_publish(exchange='',
                       routing_key='task_queue',
-                      body=str(message),
+                      body=repr(message),
                       properties=pika.BasicProperties(
                          delivery_mode = 2, # make message persistent
                       ))

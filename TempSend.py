@@ -1,15 +1,28 @@
 #!/usr/bin/env python
 import pika
 import time
+import ast
+import os
 
-def sendIoTMessage (message)
+def sendIoTMessage (message):
     
     command = "mosquitto_pub --cafile rootCA.pem --cert cert.pem --key privateKey.pem -h A3TNLWZ1LLGHU0.iot.us-east-1.amazonaws.com -p 8883 -q 1 -d -t topic/test2 -i clientid2 -m "
 
-    # make sure that you intrepret the dict the right way
-ast.literal_eval
-    command = command + "\"{\\\"msg\\\" : \\\"Happy hungry\\\", \\\"temperature\\\" : \\\"452\\\"}\""
+    print "Parse this: " + message
+    theDict = ast.literal_eval (message)
+    msgStr = "\"{"
+    count = 0
+    for key in theDict:
+        if count > 0:
+            msgStr = msgStr + ", "
 
+        msgStr = msgStr + "\\\"" + str(key) + "\\\" : \\\"" + theDict[key] + "\\\""
+        count = count + 1
+
+    msgStr = msgStr + "}\""
+
+    command = command + msgStr
+    print command
     os.system (command)
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
