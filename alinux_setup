@@ -3,6 +3,8 @@ echo "Updating instance"
 
 # run sudo update
 sudo yum -y update
+sudo yum -y install python-pip
+
 sudo pip install --upgrade pip
 
 echo "installing mosquitto"
@@ -10,15 +12,15 @@ sudo wget -O /etc/yum.repos.d/mqtt.repo http://download.opensuse.org/repositorie
 sudo yum -y install mosquitto mosquitto-clients
 
 echo "set up maven"
-sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
-sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
-sudo yum install -y apache-maven
+#sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+#sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+#sudo yum install -y apache-maven
 
 
 echo "set up mosquitto java client"
-git clone http://git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.java.git
-cd org.eclipse.paho.mqtt.java.git
-mvn package -DskipTests
+#git clone http://git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.java.git
+#cd org.eclipse.paho.mqtt.java.git
+#mvn package -DskipTests
 
 echo "set up mosquitto python client"
 sudo pip install paho-mqtt
