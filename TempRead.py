@@ -22,8 +22,8 @@ while True:
     temp = readTemp ()
     message = {}
 
-    message ['temp'] = str(temp)
-    message ['time'] = str(time.time())
+    message ['reading'] = str(temp)
+    message ['time'] = time.strftime('%Y-%m-%d %H:%M:%S')
     message ['sensor'] = "sensorID"
     message ['type'] = "temperature"
 
